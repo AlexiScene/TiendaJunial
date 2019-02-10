@@ -51,3 +51,9 @@ Route::get('cart/update/{producto}/{cantidad?}', [
 	'uses' => 'CartController@update'
 ]);
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+

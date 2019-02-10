@@ -70,7 +70,7 @@
 			@endif
 			<hr>
 			<p>
-				<a href="{{ route('home') }}" class="btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Seguir Comprando</a>
+				<a href="/" class="btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Seguir Comprando</a>
 
 				<a href="#" class="btn btn-primary"> Continuar <i class="fa fa-chevron-circle-right"></i></a>
 			</p>

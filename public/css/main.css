@@ -154,3 +154,12 @@ transition: all 0.3s ease-in-out;
   width: 75px;
   height: 75px;
 }
+
+/*Detalle del pedido--------------*/
+.page
+{
+  background: #000000;
+  border-radius: 1em;
+  margin-bottom: 30px;
+  padding: 1em;
+}
