@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(\App\User::class, function ($app) {
+    return new \App\User($app->config['app.name']);
+    });
     }
 }

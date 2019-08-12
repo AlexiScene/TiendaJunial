@@ -15,7 +15,7 @@
     Categorias
   </button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Cervezas</a>
+    <a class="dropdown-item" href="{{ route('cervezas-index') }}">Cervezas</a>
     <a class="dropdown-item" href="#">Vinos</a>
     <a class="dropdown-item" href="#">Whiskys</a>
     <a class="dropdown-item" href="#">Espirituosas</a>
