@@ -30,12 +30,13 @@
 									</a>
 								</td>
 								<td>
-									{!! Form::open(['route' => ['categoria.destroy', $categoria]]) !!}
-									<input type="hidden" name="method" value="DELETE">
-									<button onclick="return confirm('Eliminar registro?')" class="btn btn-danger">
+									{!! Form::open(['method'  => 'delete', 'route' => ['categoria.destroy', $categoria]]) !!}
+									<input type="hidden" name="_method" value="DELETE">
+									<button onclick="return confirm('¿Eliminar categoria?')" class="btn btn-danger">
 										<i class="fa fa-trash-o"></i>				
 									</button>
 									{!! Form::close() !!}
+
 								</td>
 								<td>{{ $categoria->nombre }}</td>
 								<td>{{ $categoria->descripcion }}</td>

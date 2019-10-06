@@ -16,14 +16,13 @@ Route::bind('producto', function($slug){
 });
 
 // Categoria dependencia injeccion
-Route::bind('categoria', function($categoria){
-    return App\Categoria::find($categoria);
-});
+Route::bind('categoria', function ($categoria) {
+        return App\User::where('nombre', $categoria)->first() ?? abort(404);
+        });
 // User dependency injection
 Route::bind('user', function($user){
     return App\User::find($user);
 });
-
 
 
 
@@ -95,18 +94,12 @@ Route::get('payment/status', array(
 
 // Admin -------------------
 
+Route::get('admin/home', function(){
+	return view('admin.home');
+});
+
 Route::resource('admin/categoria', 'Admin\CategoriaController');
 
-Route::PUT('admin/categoria', 'CategoriaController@update')->name('categoria.update');
-
-//Route::put('/admin/products/{id}', 'ProductController@update')->name('productos.update');
-
-
-
-Route::get('cervezas/show', [
-	'as' => 'cervezas-show',
-	'uses' => 'CervezasController@show'
-]);
-
+Route::resource('admin/producto', 'Admin\ProductoController');
 
 

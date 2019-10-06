@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 
 use App\Categoria;
 
+use App\User;
+use App\Repositories\UserRepository;
+
+
 class CategoriaController extends Controller
 {
     /**
@@ -77,8 +81,10 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit(Categoria $categoria, $id)
     {
+        $categoria = Categoria::findOrFail($id);
+
         return view('admin.categoria.edit', compact('categoria'));
     }
 
@@ -89,20 +95,14 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
-        $this->validate($request, [
-          'nombre' => 'required|max:255',
-          'color' => 'required',
-        ]);
-        $categoria->fill($request->all());
-        $categoria->slug = str_slug($request->get('nombre'));
+       
+        $this->validate($request,[ 'nombre'=>'required', 'descripcion'=>'required', 'color'=>'required']);
+ 
+        categoria::find($id)->update($request->all());
         
-        $updated = $categoria->save();
-        
-        $message = $updated ? 'Categoría actualizada correctamente!' : 'La Categoría NO pudo actualizarse!';
-        
-        return redirect()->route('admin.categoria.index')->with('message', $message);
+         return redirect()->route('categoria.index')->with('message','Categoria actualizada correctamente!');
     }
 
     /**
@@ -111,11 +111,13 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy($id)
     {
+        $categoria = Categoria::findOrFail($id);
         $deleted = $categoria->delete();
 
-        $message = $deleted ? 'Categoria eliminada correctamente!' : 'La categoria no pudo eliminarse!';
+        
+          $message = $deleted ? 'Categoria eliminada correctamente!' : 'La categoria NO pudo eliminarse!';
 
         return redirect()->route('categoria.index')->with('message', $message);
     }
